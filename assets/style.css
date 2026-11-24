@@ -1,0 +1,152 @@
+/* ===================== 配色（淡雅） ===================== */
+:root {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --text: #2b2b2b;
+  --muted: #7a7a75;
+  --line: #e8e5de;
+  --accent: #4a6b82;        /* 雾蓝 */
+  --accent-soft: #eef2f5;
+  --serif: "Source Serif 4", "Noto Serif SC", "Songti SC", Georgia, serif;
+  --sans: "Inter", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1c1e;
+    --surface: #232427;
+    --text: #e4e2dd;
+    --muted: #9a9892;
+    --line: #34353a;
+    --accent: #9bb7cc;
+    --accent-soft: #2a3036;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+img { max-width: 100%; display: block; }
+
+/* ===================== 布局 ===================== */
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 72px 32px 24px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 64px;
+}
+.sidebar { position: sticky; top: 72px; align-self: start; }
+
+@media (max-width: 760px) {
+  .page { grid-template-columns: 1fr; gap: 32px; padding: 40px 16px 16px; }
+  .sidebar { position: static; text-align: center; }
+  .sidebar .links { justify-content: center; }
+  .avatar { margin: 0 auto 18px; }
+}
+
+/* ===================== 侧栏 ===================== */
+.avatar {
+  width: 168px; height: 168px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-size: 52px;
+}
+.name {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.25;
+}
+.name-alt { color: var(--muted); font-size: 16px; margin-top: 2px; }
+.role { margin-top: 12px; color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+.email { margin-top: 10px; font-size: 14px; word-break: break-all; }
+.links {
+  display: flex; flex-wrap: wrap; gap: 6px 14px;
+  margin-top: 14px; font-size: 14px;
+}
+
+/* ===================== 内容 ===================== */
+section { margin-bottom: 52px; }
+section > h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 21px;
+  margin: 0 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.bio p { margin: 0 0 12px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.tag {
+  font-size: 13px; padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent);
+}
+
+/* 列表：News / Honors */
+.dated { list-style: none; padding: 0; margin: 0; }
+.dated li { display: grid; grid-template-columns: 76px 1fr; gap: 12px; padding: 4px 0; }
+.dated .date { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14px; padding-top: 1px; }
+
+/* 条目：Publications / Projects */
+.item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+}
+.item + .item { border-top: 1px dashed var(--line); }
+.item.no-img { grid-template-columns: 1fr; }
+.item.highlight { padding-left: 16px; border-left: 3px solid var(--accent); }
+.item.highlight + .item, .item + .item.highlight { border-top: none; }
+.thumb {
+  width: 100%; aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.item-title { font-weight: 500; font-size: 16px; line-height: 1.5; margin: 0 0 4px; }
+.authors { font-size: 14px; color: var(--muted); }
+.authors .me { color: var(--text); font-weight: 600; }
+.venue { font-size: 14px; font-style: italic; margin-top: 2px; }
+.note { color: #b0603a; font-style: normal; font-weight: 500; margin-left: 6px; }
+.desc { font-size: 14.5px; margin-top: 4px; }
+.item-links { margin-top: 6px; font-size: 13.5px; display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.item-links a {
+  padding: 0 8px; border: 1px solid var(--line); border-radius: 4px;
+  color: var(--accent);
+}
+.item-links a:hover { background: var(--accent-soft); text-decoration: none; }
+
+@media (max-width: 560px) {
+  .item { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* 条目：Education / Experience */
+.entry { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; }
+.entry .main b { font-weight: 500; }
+.entry .sub { color: var(--muted); font-size: 14px; }
+.entry .period { color: var(--muted); font-size: 14px; white-space: nowrap; }
+@media (max-width: 560px) { .entry { flex-direction: column; gap: 0; } }
+
+.footer {
+  text-align: center; color: var(--muted); font-size: 13px;
+  padding: 24px 16px 48px;
+}
